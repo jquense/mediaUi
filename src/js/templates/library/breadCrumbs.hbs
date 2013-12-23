@@ -1,0 +1,9 @@
+﻿{{#if isActive}}
+  <li class="active">
+    {{ text }}
+  </li>
+{{ else }}
+  <li>
+    <a href="#" class="crumb" data-key="{{ key }}" >{{ text }}</a>
+  </li>
+{{/if}}

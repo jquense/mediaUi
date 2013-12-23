@@ -1,0 +1,16 @@
+﻿<ul class="nav list-unstyled">
+	{{#each models }}
+	<li>
+    <strong class="nav-header">{{ index }}</strong>
+		{{#if artists }}
+		<ul>
+      {{#each artists }}
+      <li>
+        <a href="/artists/{{ id }}" class="artist-link" data-cid="{{ cid }}" data-link="client">{{ id }}</a>
+      </li>
+			{{/each}}
+		</ul>
+		{{/if}}
+	</li>
+	{{/each}}
+</ul> 
