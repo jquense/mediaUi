@@ -1,0 +1,28 @@
+﻿<div class="image-grid">
+	<a href="#">
+	{{#eq images.length 1 }}
+		<img class="img-responsive" data-src="http://localhost:3000{{ images.[0] }}" style="min-height:50px" alt=""/>
+	{{ else }}
+		<div class="clearfix">
+			<div class="image-lg">
+				<img class="img-responsive" data-src="http://localhost:3000{{ images.[0] }}" alt=""/>
+			</div>
+			
+			<div class="image-sm">
+				{{#each images}}
+				{{#gt @index 1}}
+					{{#lt @index 5}}<img class="img-responsive" data-src="http://localhost:3000{{ this }}" alt=""/>{{/lt}}
+				{{/gt}}
+				{{/each}}
+			</div>
+		</div>
+		<div class="clearfix">
+			{{#each images}}
+				{{#gt @index 4}}
+					<div class="image-sm"><img class="img-responsive" data-src="http://localhost:3000{{ this }}" alt=""/></div>
+				{{/gt}}
+			{{/each}}
+		</div>
+	{{/eq}}
+	</a>
+</div>

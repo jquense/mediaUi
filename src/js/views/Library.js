@@ -15,6 +15,10 @@ module.exports = AppView.extend({
                 "select" : "crumbSelect"
             }
         },
+        artists:    { 
+            region: 'main .main-content', 
+            view  : [ require('./ArtistIndex'),   ".media-list"]
+        },
         albums:    { 
             region: 'main .main-content', 
             view  : [ require('./Albums'),        ".media-list"]
@@ -49,10 +53,10 @@ module.exports = AppView.extend({
     },
     loadMain: function(artist, album){
         var region = this.regions.main
-          , view   = album ? 'mediaList' : 'albums'
+          , view   = album ? 'mediaList' : artist ? 'albums' : 'artists'
           , data   = {};
         
-        this.loadIndex();
+        //this.loadIndex();
 
         if ( album ) data.album  = album;
         if ( artist) data.artist = artist;

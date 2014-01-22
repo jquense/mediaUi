@@ -18,6 +18,7 @@
   <ItemGroup>
     <Compile Include="public\js\bootstrap.js" />
     <Compile Include="public\js\bootstrap.min.js" />
+    <Compile Include="public\js\plugins\jquery.unveil.js" />
     <Compile Include="src\js\api\apiManager.js" />
     <Compile Include="src\js\areas\AppArea.js" />
     <Compile Include="src\js\areas\library.js" />
@@ -30,6 +31,8 @@
     <Compile Include="src\js\collections\ApiCollection.js" />
     <Compile Include="src\js\models\Artist.js" />
     <Compile Include="src\js\collections\ArtistIndex.js" />
+    <Compile Include="src\js\templates\partials.js" />
+    <Compile Include="src\js\templates\helpers.js" />
     <Compile Include="src\js\utilities.js" />
     <Compile Include="src\js\views\AppView.js" />
     <Compile Include="src\js\views\BreadCrumbView.js" />
@@ -46,6 +49,7 @@
     <Content Include="public\css\bootstrap-theme.min.css" />
     <Content Include="public\css\bootstrap.css" />
     <Content Include="public\css\bootstrap.min.css" />
+    <Content Include="public\css\site.css" />
     <Content Include="public\css\style.css" />
     <Content Include="public\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="public\fonts\glyphicons-halflings-regular.svg" />
@@ -56,11 +60,14 @@
     <Compile Include="gruntfile.js" />
     <Compile Include="routes\index.js" />
     <Compile Include="routes\user.js" />
+    <Content Include="src\js\templates\_imageGrid.hbs" />
+    <Content Include="src\js\templates\library\artistList.hbs" />
     <Content Include="src\js\templates\library\breadCrumbs.hbs" />
     <Content Include="src\js\templates\media.hbs" />
     <Content Include="src\js\templates\album.hbs" />
-    <Content Include="src\js\templates\artistsIndex.hbs" />
+    <Content Include="src\js\templates\library\artistsIndex.hbs" />
     <Content Include="src\js\views\ArtistIndex.js" />
+    <Content Include="src\less\site.less" />
     <Content Include="views\layout.jade" />
     <Content Include="obj\Debug\package.json" />
     <Content Include="obj\Debug\README.md" />
@@ -5184,6 +5191,7 @@
     <Folder Include="public\css\" />
     <Folder Include="public\fonts\" />
     <Folder Include="public\js" />
+    <Folder Include="public\js\plugins\" />
     <Folder Include="public\stylesheets" />
     <Folder Include="public\views" />
     <Folder Include="routes" />
@@ -5200,6 +5208,7 @@
     <Folder Include="src\js\lib" />
     <Folder Include="src\js\models" />
     <Folder Include="src\js\collections\" />
+    <Folder Include="src\less\" />
     <Folder Include="views" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />

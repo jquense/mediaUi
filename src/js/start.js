@@ -4,7 +4,9 @@ var $ = require('./lib/jquery-2.0.3.js')
   , Backbone = require('backbone')
   , Connection = require('./api/server.js');
 
-  
+require('./templates/helpers.js')();
+require('./templates/partials.js')();
+
 $(function(){
     var lib = require('./views/Library')
     

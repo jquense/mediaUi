@@ -21086,7 +21086,7 @@ module.exports = ApiModel.extend({
     idAttribute:  "_id",
     urlRoot: "/albums",
 })
-},{"../utilities":30,"./ApiModel":22}],22:[function(require,module,exports){
+},{"../utilities":33,"./ApiModel":22}],22:[function(require,module,exports){
 ﻿var Backbone = require('backbone')
   , $ = require('../lib/jquery-2.0.3.js')
   , api = require("../api")
@@ -21118,7 +21118,7 @@ module.exports = Backbone.Model.extend({
         return conn.request(url, {}, options)
     }
 })
-},{"../api":12,"../lib/jquery-2.0.3.js":20,"../utilities":30,"backbone":3}],23:[function(require,module,exports){
+},{"../api":12,"../lib/jquery-2.0.3.js":20,"../utilities":33,"backbone":3}],23:[function(require,module,exports){
 ﻿var ApiModel = require('./ApiModel')
   , utils = require('../utilities')
 
@@ -21128,7 +21128,7 @@ module.exports = ApiModel.extend({
     idAttribute:  "_id",
     urlRoot: "/artists",
 })
-},{"../utilities":30,"./ApiModel":22}],24:[function(require,module,exports){
+},{"../utilities":33,"./ApiModel":22}],24:[function(require,module,exports){
 ﻿var ApiModel = require('./ApiModel')
   , utils = require('../utilities')
 
@@ -21137,14 +21137,16 @@ module.exports = ApiModel.extend({
     idAttribute:  "_id",
     urlRoot: "/media",
 })
-},{"../utilities":30,"./ApiModel":22}],25:[function(require,module,exports){
+},{"../utilities":33,"./ApiModel":22}],25:[function(require,module,exports){
 ﻿"use strict";
 
 var $ = require('./lib/jquery-2.0.3.js')
   , Backbone = require('backbone')
   , Connection = require('./api/server.js');
 
-  
+require('./templates/helpers.js')();
+require('./templates/partials.js')();
+
 $(function(){
     var lib = require('./views/Library')
     
@@ -21152,28 +21154,90 @@ $(function(){
 
     Backbone.history.start({pushState: true})
 })
-},{"./api/server.js":14,"./lib/jquery-2.0.3.js":20,"./views/Library":37,"backbone":3}],26:[function(require,module,exports){
+},{"./api/server.js":14,"./lib/jquery-2.0.3.js":20,"./templates/helpers.js":28,"./templates/partials.js":32,"./views/Library":40,"backbone":3}],26:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var Handlebars = require('hbsfy/runtime');
 module.exports = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
+  var buffer = "", stack1, stack2, options, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
 
+function program1(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\r\n		<img class=\"img-responsive\" data-src=\"http://localhost:3000"
+    + escapeExpression(((stack1 = ((stack1 = depth0.images),stack1 == null || stack1 === false ? stack1 : stack1[0])),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\" style=\"min-height:50px\" alt=\"\"/>\r\n	";
+  return buffer;
+  }
 
-  buffer += "﻿<li>\r\n  <a href=\"/";
-  if (stack1 = helpers.id) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.id; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "\" class=\"album-link\" data-cid=\"";
-  if (stack1 = helpers.cid) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "\" data-link=\"client\" data-behave=\"append\">";
-  if (stack1 = helpers.id) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.id; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "</a>\r\n</li>\r\n ";
+function program3(depth0,data) {
+  
+  var buffer = "", stack1, stack2;
+  buffer += "\r\n		<div class=\"clearfix\">\r\n			<div class=\"image-lg\">\r\n				<img class=\"img-responsive\" data-src=\"http://localhost:3000"
+    + escapeExpression(((stack1 = ((stack1 = depth0.images),stack1 == null || stack1 === false ? stack1 : stack1[0])),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\" alt=\"\"/>\r\n			</div>\r\n			\r\n			<div class=\"image-sm\">\r\n				";
+  stack2 = helpers.each.call(depth0, depth0.images, {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data});
+  if(stack2 || stack2 === 0) { buffer += stack2; }
+  buffer += "\r\n			</div>\r\n		</div>\r\n		<div class=\"clearfix\">\r\n			";
+  stack2 = helpers.each.call(depth0, depth0.images, {hash:{},inverse:self.noop,fn:self.program(8, program8, data),data:data});
+  if(stack2 || stack2 === 0) { buffer += stack2; }
+  buffer += "\r\n		</div>\r\n	";
+  return buffer;
+  }
+function program4(depth0,data) {
+  
+  var buffer = "", stack1, stack2, options;
+  buffer += "\r\n				";
+  options = {hash:{},inverse:self.noop,fn:self.program(5, program5, data),data:data};
+  stack2 = ((stack1 = helpers.gt || depth0.gt),stack1 ? stack1.call(depth0, ((stack1 = data),stack1 == null || stack1 === false ? stack1 : stack1.index), 1, options) : helperMissing.call(depth0, "gt", ((stack1 = data),stack1 == null || stack1 === false ? stack1 : stack1.index), 1, options));
+  if(stack2 || stack2 === 0) { buffer += stack2; }
+  buffer += "\r\n				";
+  return buffer;
+  }
+function program5(depth0,data) {
+  
+  var buffer = "", stack1, stack2, options;
+  buffer += "\r\n					";
+  options = {hash:{},inverse:self.noop,fn:self.program(6, program6, data),data:data};
+  stack2 = ((stack1 = helpers.lt || depth0.lt),stack1 ? stack1.call(depth0, ((stack1 = data),stack1 == null || stack1 === false ? stack1 : stack1.index), 5, options) : helperMissing.call(depth0, "lt", ((stack1 = data),stack1 == null || stack1 === false ? stack1 : stack1.index), 5, options));
+  if(stack2 || stack2 === 0) { buffer += stack2; }
+  buffer += "\r\n				";
+  return buffer;
+  }
+function program6(depth0,data) {
+  
+  var buffer = "";
+  buffer += "<img class=\"img-responsive\" data-src=\"http://localhost:3000"
+    + escapeExpression((typeof depth0 === functionType ? depth0.apply(depth0) : depth0))
+    + "\" alt=\"\"/>";
+  return buffer;
+  }
+
+function program8(depth0,data) {
+  
+  var buffer = "", stack1, stack2, options;
+  buffer += "\r\n				";
+  options = {hash:{},inverse:self.noop,fn:self.program(9, program9, data),data:data};
+  stack2 = ((stack1 = helpers.gt || depth0.gt),stack1 ? stack1.call(depth0, ((stack1 = data),stack1 == null || stack1 === false ? stack1 : stack1.index), 4, options) : helperMissing.call(depth0, "gt", ((stack1 = data),stack1 == null || stack1 === false ? stack1 : stack1.index), 4, options));
+  if(stack2 || stack2 === 0) { buffer += stack2; }
+  buffer += "\r\n			";
+  return buffer;
+  }
+function program9(depth0,data) {
+  
+  var buffer = "";
+  buffer += "\r\n					<div class=\"image-sm\"><img class=\"img-responsive\" data-src=\"http://localhost:3000"
+    + escapeExpression((typeof depth0 === functionType ? depth0.apply(depth0) : depth0))
+    + "\" alt=\"\"/></div>\r\n				";
+  return buffer;
+  }
+
+  buffer += "﻿<div class=\"image-grid\">\r\n	<a href=\"#\">\r\n	";
+  options = {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data};
+  stack2 = ((stack1 = helpers.eq || depth0.eq),stack1 ? stack1.call(depth0, ((stack1 = depth0.images),stack1 == null || stack1 === false ? stack1 : stack1.length), 1, options) : helperMissing.call(depth0, "eq", ((stack1 = depth0.images),stack1 == null || stack1 === false ? stack1 : stack1.length), 1, options));
+  if(stack2 || stack2 === 0) { buffer += stack2; }
+  buffer += "\r\n	</a>\r\n</div>";
   return buffer;
   });
 
@@ -21183,57 +21247,135 @@ var Handlebars = require('hbsfy/runtime');
 module.exports = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "﻿\r\n<li class=\"media\">\r\n  <img class=\"media-object pull-left\" src=\"";
+  if (stack1 = helpers.coverArt) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.coverArt; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\" style=\"width: 75px;\"/>\r\n  <div class=\"media-body\">\r\n    <h4 class=\"media-heading\">\r\n      <a href=\"/";
+  if (stack1 = helpers.album) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.album; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\" class=\"album-link\" data-cid=\"";
+  if (stack1 = helpers.album) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.album; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\" data-behave=\"append\" data-link=\"client\">";
+  if (stack1 = helpers.album) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.album; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</a>\r\n    </h4>\r\n  </div>\r\n</li>\r\n";
+  return buffer;
+  });
+
+},{"hbsfy/runtime":9}],28:[function(require,module,exports){
+﻿var Handlebars = require("hbsfy/runtime")
+  , _ = require('lodash');
+
+module.exports = function(){
+
+    Handlebars.registerHelper("rows", function(context, cnt, options) {
+        var i = 0, len = context.length
+          , row = []
+          , out= '', attrs = '', data;
+        
+        options.hash.class = options.hash.class + ' row';
+
+        attr = _.map(options.hash, function(v, k){  return k + "=\"" + v + "\"" });
+
+        for(; i < len; i++) {
+            row.push(context[i]);
+
+            if ( (i + 1) % cnt === 0 || i >= len ){
+                out += "<div " + attr + ">" + options.fn({ items: row }) + "</div>"
+                row = [];
+            }
+        }
+
+        return out;
+    });
+
+    var ops = {
+            eq:  function(l, r){ return l === r },  
+            neq: function(l, r){ return l !== r }, 
+            gt:  function(l, r){ return l > r }, 
+            gte: function(l, r){ return l >= r }, 
+            lt:  function(l, r){ return l < r }, 
+            lte: function(l, r){ return l <= r }, 
+        };
+
+    _.each(ops, function(fn, key){
+        Handlebars.registerHelper(key, function(left, right, options) {
+            return fn(left, right) 
+                ? options.fn(this)
+                : options.inverse(this);
+        });
+    })
+    
+}
+},{"hbsfy/runtime":9,"lodash":10}],29:[function(require,module,exports){
+// hbsfy compiled Handlebars template
+var Handlebars = require('hbsfy/runtime');
+module.exports = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
+  var buffer = "", stack1, self=this, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing;
 
 function program1(depth0,data) {
   
-  var buffer = "", stack1;
-  buffer += "\r\n	<li>\r\n    <strong class=\"nav-header\">";
+  var buffer = "", stack1, stack2, options;
+  buffer += "\r\n<div class=\"container\">\r\n  <strong class=\"nav-header\">";
   if (stack1 = helpers.index) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.index; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "</strong>\r\n		";
-  stack1 = helpers['if'].call(depth0, depth0.artists, {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n	</li>\r\n	";
+    + "</strong>\r\n	";
+  options = {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data};
+  stack2 = ((stack1 = helpers.rows || depth0.rows),stack1 ? stack1.call(depth0, depth0.artists, 4, options) : helperMissing.call(depth0, "rows", depth0.artists, 4, options));
+  if(stack2 || stack2 === 0) { buffer += stack2; }
+  buffer += "\r\n</div>\r\n";
   return buffer;
   }
 function program2(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\r\n		<ul>\r\n      ";
-  stack1 = helpers.each.call(depth0, depth0.artists, {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
+  buffer += "\r\n      ";
+  stack1 = helpers.each.call(depth0, depth0.items, {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n		</ul>\r\n		";
+  buffer += "\r\n  ";
   return buffer;
   }
 function program3(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\r\n      <li>\r\n        <a href=\"/artists/";
-  if (stack1 = helpers.id) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.id; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += "\r\n        <div class=\"col-sm-3\">\r\n          ";
+  stack1 = self.invokePartial(partials.imageGrid, 'imageGrid', depth0, helpers, partials, data);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n          <a href=\"/artists/";
+  if (stack1 = helpers._id) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0._id; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "\" class=\"artist-link\" data-cid=\"";
-  if (stack1 = helpers.cid) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+    + "\" class=\"artist-link\" data-id=\"";
+  if (stack1 = helpers._id) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0._id; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
     + "\" data-link=\"client\">";
-  if (stack1 = helpers.id) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.id; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (stack1 = helpers._id) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0._id; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "</a>\r\n      </li>\r\n			";
+    + "</a>\r\n        </div>\r\n      ";
   return buffer;
   }
 
-  buffer += "﻿<ul class=\"nav list-unstyled\">\r\n	";
+  buffer += "﻿\r\n";
   stack1 = helpers.each.call(depth0, depth0.models, {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n</ul> ";
+  buffer += "\r\n";
   return buffer;
   });
 
-},{"hbsfy/runtime":9}],28:[function(require,module,exports){
+},{"hbsfy/runtime":9}],30:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var Handlebars = require('hbsfy/runtime');
 module.exports = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
@@ -21274,7 +21416,7 @@ function program3(depth0,data) {
   return buffer;
   });
 
-},{"hbsfy/runtime":9}],29:[function(require,module,exports){
+},{"hbsfy/runtime":9}],31:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var Handlebars = require('hbsfy/runtime');
 module.exports = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
@@ -21303,7 +21445,16 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   });
 
-},{"hbsfy/runtime":9}],30:[function(require,module,exports){
+},{"hbsfy/runtime":9}],32:[function(require,module,exports){
+﻿var Handlebars = require("hbsfy/runtime")
+  , _ = require('lodash');
+
+module.exports = function(){
+
+    Handlebars.registerPartial('imageGrid', require('./_imageGrid.hbs'))
+    
+}
+},{"./_imageGrid.hbs":26,"hbsfy/runtime":9,"lodash":10}],33:[function(require,module,exports){
 ﻿
 module.exports = {
     
@@ -21323,7 +21474,7 @@ module.exports = {
     }    
     
 }
-},{}],31:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 ﻿var Backbone = require('backbone')
   , CollectionView = require('./CollectionView')
   , $ = require('../lib/jquery-2.0.3.js')
@@ -21343,13 +21494,22 @@ module.exports = CollectionView.extend({
         "click a.album-link": "selectAlbum"
     },
 
-    selectAlbum: function(e){
-        var artist = this.boundObj.get(e.target.getAttribute("data-cid"))
+    process: function(item){
+        var data = item.toJSON();
 
-        this.trigger("select", artist && artist.toJSON());
+        data.album    = data._id || "No Album";
+        data.coverArt = this.conn.server + data.image || '/img/defaultAlbumLight.png';
+
+        return data;
+    },
+
+    selectAlbum: function(e){
+        var alb = this.boundObj.get(e.target.getAttribute("data-cid"))
+
+        this.trigger("select", alb && alb.toJSON());
     }
 })
-},{"../collections/Albums":15,"../lib/jquery-2.0.3.js":20,"../templates/album.hbs":26,"./CollectionView":35,"backbone":3,"lodash":10}],32:[function(require,module,exports){
+},{"../collections/Albums":15,"../lib/jquery-2.0.3.js":20,"../templates/album.hbs":27,"./CollectionView":38,"backbone":3,"lodash":10}],35:[function(require,module,exports){
 ﻿var Backbone = require('backbone')
   , CompositeView = require('./CompositeView')
   , Q = require('q')
@@ -21391,20 +21551,20 @@ module.exports = CompositeView.extend({
         })    
     }
 })
-},{"../utilities":30,"./CompositeView":36,"backbone":3,"lodash":10,"q":11}],33:[function(require,module,exports){
+},{"../utilities":33,"./CompositeView":39,"backbone":3,"lodash":10,"q":11}],36:[function(require,module,exports){
 ﻿"use strict";
 
 var View = require('./View')
   , Backbone = require('Backbone')
   , $ = require('../lib/jquery-2.0.3.js')
   , _ = require('lodash')
-  
+  , articles = [ 'the', 'el', 'la', 'los', 'las', 'le', 'les'];
 
 Backbone.$ = $;
 
 
 module.exports = View.extend({
-	template:   require('../templates/artistsIndex.hbs'),
+	template:   require('../templates/library/artistList.hbs'),
 
     collection: require('../collections/ArtistIndex'),
 
@@ -21413,8 +21573,8 @@ module.exports = View.extend({
     },
 
 	process: function(){
-		var groups = _(this.collection.models).groupBy(function(m){
-			    return m.id ? m.id.charAt(0).toUpperCase(): "";
+		var groups = _(this.collection.toJSON()).groupBy(function(m){
+			    return m.id ? woutArticle(m.id).charAt(0).toUpperCase(): "";
 		    })
             .map(function(artists, letter){
                 return { index: letter, artists: artists}
@@ -21425,13 +21585,29 @@ module.exports = View.extend({
 		return { models: groups }
 	},
 
+    onRender: function(){
+        this.$('img[data-src]').unveil();  
+    },
+
     selectArtist: function(e){
-        var artist = this.boundObj.get(e.target.getAttribute("data-cid"))
+        var artist = this.boundObj.get(e.target.getAttribute("data-id"))
 
         this.trigger("select", artist && artist.toJSON());
     }
 });
-},{"../collections/ArtistIndex":17,"../lib/jquery-2.0.3.js":20,"../templates/artistsIndex.hbs":27,"./View":40,"Backbone":1,"lodash":10}],34:[function(require,module,exports){
+
+function woutArticle(str){
+    var r = str
+      , lower = str.toLowerCase();
+     
+    _.each(articles, function(article){
+        if ( 0 === lower.indexOf(article + ' ') ) 
+            r = str.substring(article.length + 1);
+    }) 
+    
+    return r; 
+}
+},{"../collections/ArtistIndex":17,"../lib/jquery-2.0.3.js":20,"../templates/library/artistList.hbs":29,"./View":43,"Backbone":1,"lodash":10}],37:[function(require,module,exports){
 ﻿"use strict";
 
 var CollectionView = require('./CollectionView')
@@ -21443,7 +21619,7 @@ var CollectionView = require('./CollectionView')
 Backbone.$ = $;
 
 module.exports = CollectionView.extend({
-	itemTemplate:   require('../templates/library/breadCrumbs.hbs'),
+	itemTemplate: require('../templates/library/breadCrumbs.hbs'),
 
     collection: require('../collections/library/BreadCrumbs'),
 
@@ -21488,7 +21664,7 @@ module.exports = CollectionView.extend({
         this.collection.appendCrumb(key, text);
     }
 });
-},{"../collections/library/BreadCrumbs":19,"../lib/jquery-2.0.3.js":20,"../templates/library/breadCrumbs.hbs":28,"./CollectionView":35,"Backbone":1,"lodash":10}],35:[function(require,module,exports){
+},{"../collections/library/BreadCrumbs":19,"../lib/jquery-2.0.3.js":20,"../templates/library/breadCrumbs.hbs":30,"./CollectionView":38,"Backbone":1,"lodash":10}],38:[function(require,module,exports){
 ﻿var Backbone = require('backbone')
   , View = require('./View')
   , $ = require('../lib/jquery-2.0.3.js')
@@ -21517,7 +21693,7 @@ module.exports = View.extend({
     },
 
 })
-},{"../lib/jquery-2.0.3.js":20,"./View":40,"backbone":3,"lodash":10}],36:[function(require,module,exports){
+},{"../lib/jquery-2.0.3.js":20,"./View":43,"backbone":3,"lodash":10}],39:[function(require,module,exports){
 ﻿var View = require('./View')
   , Q = require('q')
   , _ = require('lodash')
@@ -21579,7 +21755,7 @@ module.exports = View.extend( {
     render: function(){},
 })
 
-},{"./Region":39,"./View":40,"lodash":10,"q":11}],37:[function(require,module,exports){
+},{"./Region":42,"./View":43,"lodash":10,"q":11}],40:[function(require,module,exports){
 ﻿var _ = require('lodash')
   , AppView = require('./AppView');
   
@@ -21596,6 +21772,10 @@ module.exports = AppView.extend({
             events: {
                 "select" : "crumbSelect"
             }
+        },
+        artists:    { 
+            region: 'main .main-content', 
+            view  : [ require('./ArtistIndex'),   ".media-list"]
         },
         albums:    { 
             region: 'main .main-content', 
@@ -21631,10 +21811,10 @@ module.exports = AppView.extend({
     },
     loadMain: function(artist, album){
         var region = this.regions.main
-          , view   = album ? 'mediaList' : 'albums'
+          , view   = album ? 'mediaList' : artist ? 'albums' : 'artists'
           , data   = {};
         
-        this.loadIndex();
+        //this.loadIndex();
 
         if ( album ) data.album  = album;
         if ( artist) data.artist = artist;
@@ -21644,7 +21824,7 @@ module.exports = AppView.extend({
         this.setCrumbs(data)
     }
 })
-},{"./Albums":31,"./AppView":32,"./ArtistIndex":33,"./BreadCrumbView":34,"./MediaListView":38,"lodash":10}],38:[function(require,module,exports){
+},{"./Albums":34,"./AppView":35,"./ArtistIndex":36,"./BreadCrumbView":37,"./MediaListView":41,"lodash":10}],41:[function(require,module,exports){
 ﻿var CollectionView = require('./CollectionView')
   , MediaCol = require('../collections/MediaCollection')
   , _ = require('lodash')
@@ -21683,7 +21863,7 @@ function toTimestamp(secs){
 
     return ( hours ? hours + ':'  : '' ) + (minutes < 10 ? '0' + minutes : minutes) + ':' + (seconds < 10 ? '0' + seconds : seconds);
 }
-},{"../collections/MediaCollection":18,"../templates/media.hbs":29,"./CollectionView":35,"lodash":10}],39:[function(require,module,exports){
+},{"../collections/MediaCollection":18,"../templates/media.hbs":31,"./CollectionView":38,"lodash":10}],42:[function(require,module,exports){
 ﻿var Backbone = require('backbone')
   , Q = require('q')
   , _ = require('lodash')
@@ -21737,7 +21917,7 @@ Region.prototype = {
 }
 
 module.exports = Region;
-},{"backbone":3,"lodash":10,"q":11}],40:[function(require,module,exports){
+},{"backbone":3,"lodash":10,"q":11}],43:[function(require,module,exports){
 ﻿var Backbone = require('backbone')
   , _ = require('lodash')
 
@@ -21753,8 +21933,8 @@ module.exports = Backbone.View.extend({
         this.conn     = opts.connection
         this.boundObj = this.collection || this.model;
 
-        if ( this.boundObj )
-            this.boundObj.on('all', this.render, this);       
+        if ( this.boundObj ) 
+            this.boundObj.on('sync', this.render, this);       
     },
 
     
@@ -21785,6 +21965,8 @@ module.exports = Backbone.View.extend({
         data = self.process()    
 
         $(self.el).html(self.template(data));
+
+        this.onRender && this.onRender();
     },
 
     open: function( query ){
@@ -21792,6 +21974,7 @@ module.exports = Backbone.View.extend({
             ? this.fetch(query)
             : this.render()
     },
+
     close: function(){
         this.remove()
     }

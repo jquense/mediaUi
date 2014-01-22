@@ -13,8 +13,8 @@ module.exports = Backbone.View.extend({
         this.conn     = opts.connection
         this.boundObj = this.collection || this.model;
 
-        if ( this.boundObj )
-            this.boundObj.on('all', this.render, this);       
+        if ( this.boundObj ) 
+            this.boundObj.on('sync', this.render, this);       
     },
 
     
@@ -45,6 +45,8 @@ module.exports = Backbone.View.extend({
         data = self.process()    
 
         $(self.el).html(self.template(data));
+
+        this.onRender && this.onRender();
     },
 
     open: function( query ){
@@ -52,6 +54,7 @@ module.exports = Backbone.View.extend({
             ? this.fetch(query)
             : this.render()
     },
+
     close: function(){
         this.remove()
     }

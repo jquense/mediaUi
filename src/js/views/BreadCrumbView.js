@@ -9,7 +9,7 @@ var CollectionView = require('./CollectionView')
 Backbone.$ = $;
 
 module.exports = CollectionView.extend({
-	itemTemplate:   require('../templates/library/breadCrumbs.hbs'),
+	itemTemplate: require('../templates/library/breadCrumbs.hbs'),
 
     collection: require('../collections/library/BreadCrumbs'),
 

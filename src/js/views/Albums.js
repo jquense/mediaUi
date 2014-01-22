@@ -17,9 +17,18 @@ module.exports = CollectionView.extend({
         "click a.album-link": "selectAlbum"
     },
 
-    selectAlbum: function(e){
-        var artist = this.boundObj.get(e.target.getAttribute("data-cid"))
+    process: function(item){
+        var data = item.toJSON();
 
-        this.trigger("select", artist && artist.toJSON());
+        data.album    = data._id || "No Album";
+        data.coverArt = this.conn.server + data.image || '/img/defaultAlbumLight.png';
+
+        return data;
+    },
+
+    selectAlbum: function(e){
+        var alb = this.boundObj.get(e.target.getAttribute("data-cid"))
+
+        this.trigger("select", alb && alb.toJSON());
     }
 })
