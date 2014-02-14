@@ -13,14 +13,22 @@ function Region(el){
     this.$el    = $(el)
 }
 
+function CurrentView(name, view){
+    this.name = name;
+    this.view = view;    
+}
+
+CurrentView.prototype.close = function(){ this.view.close && this.view.close(); }
+CurrentView.prototype.open  = function(o){ this.view.open && this.view.open(o); }
+
 Region.prototype = {
 
     $: function(selector){
         return this.$el.find(selector);    
     },
 
-    registerView: function(view, name){
-        this._views[name] = view;
+    registerView: function(name, ctor, options ){
+        this._views[name] = [ctor, options] ;
     },
 
     unregisterView: function(name){
@@ -28,25 +36,34 @@ Region.prototype = {
     },
 
     close: function(){
-        var view = this.currentView;
+        var current = this.currentView;
 
-        if ( !view ) return; 
-        if ( view.close )  view.close(); 
+        if ( !current  ) return; 
+        
+        current.close(); 
 
         this.currentView = null;
     },
 
-    openView: function(view, reqOpts){
-        view = this._views[view]
+    openView: function(name, reqOpts){
+        var view = this._views[name][0]
+          , options = this._views[name][1]
+          , current = this.currentView ;
 
-        if ( view !== this.currentView ){
-            this.currentView && this.currentView.close()
-            this.$el.empty().append(view.el)
-            this.currentView = view;
+        if ( !this.currentView || name !== this.currentView.name ){
+            current && current.close()
+            current = new CurrentView(name, new view(options) );
+
+            this.show(current.view);
+            current.open(reqOpts)
+
+            this.currentView = current;
         }
-
-        view.open(reqOpts)
     },
+
+    show: function(view){
+        this.$el.empty().append(view.el);
+    }
     
 }
 

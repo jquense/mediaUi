@@ -1,0 +1,18 @@
+﻿<div class="image-grid">
+	<a href="#">
+	{{#eq images.length 1 }}
+		<img class="img-responsive" data-src="http://localhost:3000{{ images.[0] }}" style="min-height:50px" alt=""/>
+	{{ else }}
+		<div class="clearfix">
+      {{#take images 4 1}}
+        <div class="image-sm">
+          <img  data-src="http://localhost:3000{{ this }}" alt=""/>
+        </div>
+      {{/take}}
+      <div class="image-lg">
+				<img class="img-responsive" data-src="http://localhost:3000{{ images.[0] }}" alt=""/>
+			</div>
+    </div>
+	{{/eq}}
+	</a>
+</div>

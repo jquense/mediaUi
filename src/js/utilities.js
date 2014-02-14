@@ -1,4 +1,5 @@
-﻿
+﻿var _ = require('lodash');
+
 module.exports = {
     
     get: function(obj, path){
@@ -14,6 +15,9 @@ module.exports = {
         }
 
         return obj
-    }    
+    },
+    makeArray: function(arr){
+        return _.isArray(arr) ? arr : [ arr ]; 
+    },   
     
 }

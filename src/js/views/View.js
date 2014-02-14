@@ -13,8 +13,10 @@ module.exports = Backbone.View.extend({
         this.conn     = opts.connection
         this.boundObj = this.collection || this.model;
 
-        if ( this.boundObj ) 
-            this.boundObj.on('sync', this.render, this);       
+        if ( this.collection ) 
+            this.boundObj.on('reset add remove sort', this.render, this);  
+        else if ( this.model ) 
+            this.boundObj.on('change add remove', this.render, this);       
     },
 
     
@@ -23,7 +25,7 @@ module.exports = Backbone.View.extend({
         var self = this
 
         return self.boundObj
-            .fetch(opts)
+            .fetch(_.extend({ reset: true }, opts))
             .then(function(){
                 self.bound = true;
             })

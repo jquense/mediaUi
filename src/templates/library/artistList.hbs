@@ -1,0 +1,12 @@
+﻿
+{{#each models }}
+  <h5 class="nav-header">{{ index }}</h5>
+	{{#rows artists 4 }}
+      {{#each items }}
+        <div class="col-sm-3">
+          {{> imageGrid }}
+          <a href="/artists/{{ _id }}" class="artist-link" data-id="{{ _id }}" data-link="client">{{ _id }}</a>
+        </div>
+      {{/each}}
+  {{/rows}}
+{{/each}}

@@ -1,28 +1,11 @@
-﻿@padding: 15px;
+﻿@import "../bootstrap/less/variables.less";
+@import "../bootstrap/less/mixins.less";
 
-body {
+
+@import "./library.less";
+@import "./slider.less";
+
+/*body {
     background-color: #33424b;
-}
+}*/
 
-.image-grid {
-    overflow: hidden;
-    background-color: #bababa;
-
-    .image-sm,
-    .image-lg {
-        float: left;
-    }
-
-    .image-lg {
-        width: 75%;
-    }
-
-    .image-sm {
-        width: 25%;
-    }
-
-    img {
-        min-height: 1px;
-        max-height: 200px;
-    }
-}

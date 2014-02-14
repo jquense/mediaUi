@@ -9,15 +9,21 @@ var CollectionView = require('./CollectionView')
 Backbone.$ = $;
 
 module.exports = CollectionView.extend({
-	itemTemplate: require('../templates/library/breadCrumbs.hbs'),
+	itemTemplate: require('../../templates/library/breadCrumbs.hbs'),
 
     collection: require('../collections/library/BreadCrumbs'),
 
     events: {
         "click a.crumb" : "selectCrumb"
     },
+    initialize: function(options){
+        CollectionView.prototype.initialize.call(this, options)
+
+        this.home = options.home || true;
+    },
 
     process: function(data){
+
         return data.toJSON()
     },
 

@@ -19,8 +19,8 @@ function encode(user, password) {
 
 module.exports = Backbone.Collection.extend({
 
-    model: model,
-    url:   model.prototype.urlRoot,
+    //model: model,
+    //url:   model.prototype.urlRoot,
 
     initialize: function(models, opts){
         this.connection = opts.connection;

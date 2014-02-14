@@ -21,8 +21,9 @@ module.exports = View.extend({
             return memo += self.itemTemplate(data)
         }, "") 
         
-
         $(self.el).html(str);
+
+        this.onRender && this.onRender();
     },
 
 })

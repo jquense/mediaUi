@@ -14,7 +14,8 @@ module.exports = Backbone.Collection.extend({
             }    
         });
 
-        data[data.length - 1].isActive = true;
+        if ( data.length )
+            data[data.length - 1].isActive = true;
 
         this.reset(data);
     },
