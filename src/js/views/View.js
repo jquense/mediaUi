@@ -1,4 +1,5 @@
-﻿var Backbone = require('backbone')
+﻿'use strict';
+var Backbone = require('backbone')
   , _ = require('lodash')
 
 
@@ -7,8 +8,10 @@ module.exports = Backbone.View.extend({
     template: function(){},
     
     initialize: function(opts){
-        if ( typeof this.model === 'function' )          this.model      = new this.model(opts.attributes  || null, opts)
-        else if( typeof this.collection === 'function' ) this.collection = new this.collection(opts.models || null, opts)
+        if ( typeof this.model === 'function' )          
+            this.model = new this.model(opts.attributes  || null, opts)
+        else if( typeof this.collection === 'function' ) 
+            this.collection = new this.collection(opts.models || null, opts)
 
         this.conn     = opts.connection
         this.boundObj = this.collection || this.model;
@@ -40,24 +43,27 @@ module.exports = Backbone.View.extend({
             : data
     },
 
-    render: function(){
+    render: function(noDraw){
         var self = this
           , data = "";
 
         data = self.process()    
 
-        $(self.el).html(self.template(data));
+        !noDraw && $(self.el).html(self.template(data));
 
         this.onRender && this.onRender();
+         
+        if ( noDraw ) 
+            return self.template(data)
     },
 
     open: function( query ){
         query 
-            ? this.fetch(query)
+            ? this.fetch(query).then(this.render.bind(this))
             : this.render()
     },
 
     close: function(){
-        this.remove()
+        this.$el.empty()
     }
 })

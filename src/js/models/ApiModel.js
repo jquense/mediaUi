@@ -1,6 +1,7 @@
 ﻿var Backbone = require('backbone')
+  , _ = require('lodash')
   , $ = require('../lib/jquery-2.0.3.js')
-  , api = require("../api")
+  , api = require('../api')
   , utils = require('../utilities')
 
 Backbone.$ = $;
@@ -12,20 +13,31 @@ var methodMap = {
     'read'  : 'GET'
   };
 
+var connError = function() {throw new Error('A \'connection\' property must be specified');}
+  , urlError  = function() {throw new Error('A \'url\' property or function must be specified');};
 
 module.exports = Backbone.Model.extend({
+
+
     constructor: function(attr, opts) {
-        if ( opts.connection ) this.conn = opts.connection;
+        this.connection = opts.connection || opts.collection.connection || connError()
 
-        if ( !this.conn ) console.warn("No Api Connection specified!");
-
-        Backbone.Model.apply(this, arguments);
+        Backbone.Model.apply(this, arguments)
     },
-    sync: function(method, model, options){
-        var conn = this.conn
-          , url  = conn.server + _.result(this, 'url');
 
-        options.type = methodMap[method];
-        return conn.request(url, {}, options)
-    }
+    sync: function(method, model, options){
+        options.type = methodMap[method]
+
+        return this.conn.request(_.result(this, 'url'), {}, options)
+    },
+
+    url: function(){
+        var base = this.connection.server
+        
+        base += _.result(this, 'urlRoot') || _.result(this.collection, 'url') || urlError()
+
+        if (this.isNew()) return base
+        
+        return base.replace(/([^\/])$/, '$1/') + encodeURIComponent(this.id)
+    },
 })

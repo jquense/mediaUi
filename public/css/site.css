@@ -1,3 +1,17 @@
+.btn-xl {
+  padding: 10px 16px;
+  font-size: 21px;
+  line-height: 1.33;
+  border-radius: 6px;
+}
+#NowPlayingPanel {
+  background-color: #eeeeee;
+  border: 1px solid #e7e7e7;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
 #NowPlayingPanel .sliders {
   position: relative;
   height: 15px;
@@ -9,8 +23,11 @@
   top: 0;
   left: 0;
 }
+#NowPlayingPanel .sliders .media-buffer {
+  background-color: white;
+}
 #NowPlayingPanel .sliders .media-buffer .m-slider-range {
-  background-color: #ccc;
+  background-color: #eeeeee;
 }
 .image-grid {
   overflow: hidden;

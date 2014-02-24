@@ -26,6 +26,12 @@ function Connection(server, endpoint, clientId){
 
 
 Connection.prototype = {
+    queryString: function(prefix){
+        return (prefix ? '?' : '&') + 'access_token=' +
+            this.access_token + '&token_type=Bearer'
+        
+    },
+
     authenticate: function(cb){
         var query = Url.parse(location.href, true).query
           , token = this.access_token
@@ -37,14 +43,14 @@ Connection.prototype = {
         if ( location.pathname === this.redirectUri) {
             if (location.hash && hash.access_token) {
                 this.setTokens(hash.access_token, hash.refresh_token)
-                window.location = location.orgin
+                cb()
             }
             else if (query.code !== undefined) {
                 this.requestAccessToken(this.redirectUri, query.code, 'my_client')
-                    .then(cb)
+                    .nodeify(cb)
 
             } else if (query.error )
-                alert(query.error + ': ' + query.error_description)
+                cb(new Error(query.error + ': ' + query.error_description))
         }
         else
             this.requestAuthCode(this.redirectUri, 'my_client')

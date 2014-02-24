@@ -1,16 +1,16 @@
 ﻿<div class="image-grid">
 	<a href="#">
 	{{#eq images.length 1 }}
-		<img class="img-responsive" data-src="http://localhost:3000{{ images.[0] }}" style="min-height:50px" alt=""/>
+		<img class="img-responsive" data-src="{{ prefix }}{{ images.[0] }}{{ query }}" style="min-height:50px" alt=""/>
 	{{ else }}
 		<div class="clearfix">
       {{#take images 4 1}}
         <div class="image-sm">
-          <img  data-src="http://localhost:3000{{ this }}" alt=""/>
+          <img  data-src="{{ ../prefix }}{{ this }}{{ ../query }}" alt=""/>
         </div>
       {{/take}}
       <div class="image-lg">
-				<img class="img-responsive" data-src="http://localhost:3000{{ images.[0] }}" alt=""/>
+				<img class="img-responsive" data-src="{{ prefix }}{{ images.[0] }}{{ query }}" alt=""/>
 			</div>
     </div>
 	{{/eq}}

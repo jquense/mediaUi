@@ -1,4 +1,5 @@
-﻿var CollectionView = require('../CollectionView')
+﻿'use strict';
+var CollectionView = require('../CollectionView')
   , MediaCol = require('../../collections/MediaCollection')
   , _ = require('lodash')
   , format = require('util').format
@@ -14,13 +15,11 @@ module.exports = CollectionView.extend({
     events: {
         'click a.media-link': 'addToPlaylist'
     },
+
     initialize: function(opt,a ){
         CollectionView.prototype.initialize.call(this, opt, a)
 
-        this._el = this.$el;
-        //$('a.mmedia-link').on('click', function(){
-        //    console.log('hiii')    
-        //})  
+        this._el = this.$el; 
     },
     process: function(item){
         var data = item.toJSON();
@@ -29,8 +28,7 @@ module.exports = CollectionView.extend({
         data.track  = data.track && data.track.no;
         data.disk   = data.disk  && data.disk.no;
         data.length = toTimestamp(data.duration || 0)
-        data.coverArt = format("%s/media/%s/coverart?access_token=%s&token_type=bearer",
-            this.conn.server, data._id, this.conn.access_token)
+        data.coverArt = item.coverArt
         
         return data;
     },
@@ -41,7 +39,7 @@ module.exports = CollectionView.extend({
         console.log('here')
         var model = this.collection.get(e.target.getAttribute('data-cid'))
         
-        msgBus.publish('addToPlaylist', model.id );
+        msgBus.publish('addToPlaylist', model );
     }
 })
 

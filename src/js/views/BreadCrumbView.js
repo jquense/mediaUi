@@ -20,6 +20,7 @@ module.exports = CollectionView.extend({
         CollectionView.prototype.initialize.call(this, options)
 
         this.home = options.home || true;
+        this.collection.home = options.home
     },
 
     process: function(data){

@@ -1,0 +1,13 @@
+<img class="media-object pull-left" src="{{ coverArt }}" style="width: 75px;"/>
+<div class="media-body">
+  <h4 class="media-heading clearfix">
+    <span class="pull-right"></span>
+    {{ title }}<br/>
+    <small>{{#artist }}{{this}} {{/artist}}: {{album}}</small>
+  </h4>
+  <div class="sliders">
+    <div class="media-buffer"></div>
+    <div class="media-scrubber"></div>
+  </div>
+  <small class="track-duration text-muted">00:00 / {{ length }}</small>
+</div>

@@ -1,8 +1,8 @@
 ﻿'use strict';
 
 var View =  require('../View')
+  , TrackInfo = require('./CurrentTrack.js')
   , MediaList = require('../../collections/mediaPlayer/MediaList.js')
-  , Slider = require('../Slider')
   , Audio = require('../../lib/audio5.js')
   , soundManager = require('../../lib/soundmanager2.js')
   , _ = require('lodash')
@@ -22,113 +22,77 @@ module.exports = View.extend({
 
     template: require('../../../templates/mediaPlayer/mediaPlayer.hbs'),
 
-
     events: {
-        'click a.play-btn'  : 'play',  
-        'click a.pause-btn' : 'pause', 
+        'click a.play-toggle-btn'  : 'playToggle',  
         'click a.next-btn'  : 'next', 
-        'click a.prev-btn'  : 'prev', 
+        'click a.prev-btn'  : 'prev' 
     },
 
     initialize: function (opts) {
-        var self = this;
+        var self = this
 
-        this.media = this.boundObj = new MediaList(opts.media, { player: this, conn: opts.connection });
+        View.prototype.initialize.call(this, opts)
 
-        this._currentIdx = 0;
-        this._currentMedia = null;
+        this.media = this.boundObj = new MediaList(opts.media, { player: this, conn: opts.connection })
 
-        this.looping = false;
-        this.shuffling = false; //everybody is 
+        this._currentIdx = 0
+        this._currentMedia = null
 
-        msgBus.subscribe('addToPlaylist', function(msg, data){ self.addToPlaylist(data) });
-        msgBus.subscribe('addToPlaylistNext', function(msg, data){ self.addToPlaylistNext(data) });
+        this.looping = false
+        this.shuffling = false //everybody is 
+
+        msgBus.subscribe('addToPlaylist', function(msg, data){ self.addToPlaylist(data) })
+        msgBus.subscribe('addToPlaylistNext', function(msg, data){ self.addToPlaylistNext(data) })
     },
 
     render: function(){
-        var scrubber
-          , buffer;
+        View.prototype.render.call(this)
 
-        View.prototype.render.call(this);
-
-        buffer = new Slider({  el: '.media-buffer' });
-
-        scrubber = new Slider({ 
-            el: '.media-scrubber',
-            adjustable: true,
-            enable: false
-        });
-
-        scrubber.on('change', _.bind(this.seek, this))
-
-        this.scrubber = scrubber;
-        this.buffer   = buffer;
-        var self = this;
+        this._trackInfo()
     },
 
-    addToPlaylist: function(mediaId){ 
-        var media = toMedia(mediaId);
+    addToPlaylist: function(model){ 
+        this.media.push(model)
 
-        this.media.push(media);
+        if ( this.media.length === 1 ) 
+            this._setMedia(0)
     },
 
-    addToPlaylistNext:  function(mediaId){
-        var media = toMedia(mediaId);
+    addToPlaylistNext:  function(model){
+        this.media.add( model, { at: this._currentIdx + 1})
 
-        this.media.add( media, { at: this._currentIdx + 1});
+        if ( this.media.length === 1 ) 
+            this._setMedia(0)
     },
 
     playToggle: function(){
-        var play = !this._currentMedia || this._currentMedia.playState() === PAUSED;
+        var play = !this._currentMedia || this._currentMedia.state() === PAUSED
 
-        if ( this._currentMedia )
-            this.togglePause(this._currentMedia.mediaId);
+        play
+            ? this.play()
+            : this.pause()
     },
 
     play: function(/* options */){
         var self = this
-          , options = arguments[0] || {}
-          , media;
+          , options = arguments[0] || {};
 
-        if ( this._currentMedia === null && this.media.length !== 0)
-            this._currentMedia = this.media.at(0);
+        if ( self._currentMedia === null && self.media.length !== 0)
+            self._setMedia(0);
      
-        _.extend( options, {
-            onplay: function(){ 
-                self.trigger('play')
-            },
-            onload: function(){
-                console.log('load')
-                self.scrubber.enable();       
-            },
-            onfinish:     _.bind(this.next, this, true),
-            whileplaying: _.bind(this._playProgress, this),  
-            whileloading: _.bind(this._loadProgress, this)
-        })
-
-        soundManager.play( this._currentMedia.mediaId, options);
+        self._currentMedia.play(options)
     },
 
     pause: function(){
-        var self = this
-          , media = this._currentMedia;
+        var media = this._currentMedia;
 
-        soundManager.pause( media.mediaId, {
-            onpause: function(){ 
-                self.trigger('pause') 
-            }    
-        });
+        media && media.pause()
     },
 
     stop: function(){
-        var self = this
-          , media = this._currentMedia;
+        var media = this._currentMedia;
 
-        soundManager.stop( media.mediaId, {
-            onstop: function(){ 
-                self.trigger('stop');
-            }    
-        });
+        media && media.stop()
     },
 
     next: function(stopAtEnd){
@@ -143,8 +107,7 @@ module.exports = View.extend({
         }
 
         this.stop();
-        this._currentMedia = this.media.at(idx);
-        this._currentIdx = idx;
+        this._setMedia(idx)
         this.play({ position: 0 });
     },
 
@@ -160,62 +123,40 @@ module.exports = View.extend({
         
         if ( idx !== this._currentIdx ) {
             this.stop();
-            this._currentMedia = this.media.at(idx);
-            this._currentIdx = idx;
+            this._setMedia(idx)
         }
 
         this.play({ position: 0 });
     },
 
-    seek: function(pos){
-        var id = this._currentMedia.mediaId
-          , sound = this._currentMedia.sound;
-
-        //this._media.seek(7)
-        //console.log('seel: ',  Math.floor(pos / 1000) * 1000)
-        //sound.stop();
-        sound.setPosition(Math.floor(pos / 1000) * 1000 );
-    },
-
     volume: function(per){
-        var id = this._currentMedia.mediaId;
+        var id = this._currentMedia.soundId;
 
         if ( per < 0 || per > 100 ) 
-            throw new Error("Volume must be between 0 & 100");
+            throw new Error('Volume must be between 0 & 100');
 
         if ( per === 0 ) soundManager.mute(id);
         else             soundManager.setVolume(id, per);
     },
 
-    _playProgress: function(){
-        var sound = this._currentMedia.sound
-          , percent = sound.position / sound.duration
-          , p = (sound.duration / 1000) * percent
-          , min = Math.floor(p / 60), sec = Math.floor(p % 60);
+    _trackInfo: function(){
+        this.info && this.info.close()
 
-        
-        this.scrubber.max = sound.duration;
-        this.scrubber.position( sound.position );
+        this.info = new TrackInfo({ 
+            el: this.$('.track-info'),
+            model: this._currentMedia,
+            connection: this.conn
+        })
 
-        //console.log("playing: ", sound.position, sound.duration)
-        msgBus.publish('playing', this._currentMedia.sound.position )
+        this.info.render()
     },
 
-    _loadProgress: function(){
-        var sound = this._currentMedia.sound
-          , percent = (sound.bytesLoaded / sound.bytesTotal) * 100;
+    _setMedia: function(idx){
+        var media = this.media.at(idx)
 
-        //console.log('loading: ', sound.bytesLoaded, sound.bytesTotal)
-        if ( percent >= 75 ) 
-            this._preloadNext();
-
-        if ( this.buffer.max == 0 ) this.buffer.max = 100;
-
-        this.buffer.position(sound.bytesLoaded * 100 );
-
-        this.loading = percent;
-
-        msgBus.publish('loading', sound.bytesLoaded, sound.bytesTotal );
+        this._currentMedia = media;
+        this._currentIdx   = idx;
+        this._trackInfo();   
     },
 
     _preloadNext: function(){
@@ -223,10 +164,3 @@ module.exports = View.extend({
     }
 });
 
-function toMedia(mediaIds){
-    return _.map( util.makeArray(mediaIds), function(m){ 
-        return {
-            mediaId: m
-        }; 
-    });
-}

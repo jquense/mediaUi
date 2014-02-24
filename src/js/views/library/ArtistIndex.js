@@ -22,15 +22,18 @@ module.exports = View.extend({
 
 	process: function(){
 		var groups = _(this.collection.toJSON()).groupBy(function(m){
-			    return m.id ? woutArticle(m.id).charAt(0).toUpperCase(): '';
+			    return m._id ? woutArticle(m._id).charAt(0).toUpperCase(): '';
 		    })
             .map(function(artists, letter){
-                return { index: letter, artists: artists}
+                return { 
+                    index: letter, 
+                    artists: artists
+                }
             })
             .sortBy('index')
             .value()
 
-		return { models: groups }
+		return { models: groups, prefix: this.conn.server, query: this.conn.queryString(true) }
 	},
 
     onRender: function(){

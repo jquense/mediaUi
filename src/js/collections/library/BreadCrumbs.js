@@ -17,6 +17,9 @@ module.exports = Backbone.Collection.extend({
         if ( data.length )
             data[data.length - 1].isActive = true;
 
+        if ( this.home ) 
+            data.shift({key: 'HOME', text: this.home })
+
         this.reset(data);
     },
 

@@ -65,6 +65,16 @@ if (typeof jQuery === "undefined") { throw new Error("Bootstrap requires jQuery"
 
 }(jQuery);
 
+/*!
+ * Bootstrap v3.0.2 by @fat and @mdo
+ * Copyright 2014 Twitter, Inc.
+ * Licensed under http://www.apache.org/licenses/LICENSE-2.0 
+ *
+ * Designed and built with all the love in the world by @mdo and @fat.
+ */
+
+if (typeof jQuery === "undefined") { throw new Error("Bootstrap requires jQuery") }
+
 /* ========================================================================
  * Bootstrap: alert.js v3.0.2
  * http://getbootstrap.com/javascript/#alerts
@@ -163,6 +173,16 @@ if (typeof jQuery === "undefined") { throw new Error("Bootstrap requires jQuery"
   $(document).on('click.bs.alert.data-api', dismiss, Alert.prototype.close)
 
 }(jQuery);
+
+/*!
+ * Bootstrap v3.0.2 by @fat and @mdo
+ * Copyright 2014 Twitter, Inc.
+ * Licensed under http://www.apache.org/licenses/LICENSE-2.0 
+ *
+ * Designed and built with all the love in the world by @mdo and @fat.
+ */
+
+if (typeof jQuery === "undefined") { throw new Error("Bootstrap requires jQuery") }
 
 /* ========================================================================
  * Bootstrap: button.js v3.0.2
@@ -273,6 +293,16 @@ if (typeof jQuery === "undefined") { throw new Error("Bootstrap requires jQuery"
   })
 
 }(jQuery);
+
+/*!
+ * Bootstrap v3.0.2 by @fat and @mdo
+ * Copyright 2014 Twitter, Inc.
+ * Licensed under http://www.apache.org/licenses/LICENSE-2.0 
+ *
+ * Designed and built with all the love in the world by @mdo and @fat.
+ */
+
+if (typeof jQuery === "undefined") { throw new Error("Bootstrap requires jQuery") }
 
 /* ========================================================================
  * Bootstrap: carousel.js v3.0.2
@@ -492,6 +522,16 @@ if (typeof jQuery === "undefined") { throw new Error("Bootstrap requires jQuery"
 
 }(jQuery);
 
+/*!
+ * Bootstrap v3.0.2 by @fat and @mdo
+ * Copyright 2014 Twitter, Inc.
+ * Licensed under http://www.apache.org/licenses/LICENSE-2.0 
+ *
+ * Designed and built with all the love in the world by @mdo and @fat.
+ */
+
+if (typeof jQuery === "undefined") { throw new Error("Bootstrap requires jQuery") }
+
 /* ========================================================================
  * Bootstrap: collapse.js v3.0.2
  * http://getbootstrap.com/javascript/#collapse
@@ -672,6 +712,16 @@ if (typeof jQuery === "undefined") { throw new Error("Bootstrap requires jQuery"
 
 }(jQuery);
 
+/*!
+ * Bootstrap v3.0.2 by @fat and @mdo
+ * Copyright 2014 Twitter, Inc.
+ * Licensed under http://www.apache.org/licenses/LICENSE-2.0 
+ *
+ * Designed and built with all the love in the world by @mdo and @fat.
+ */
+
+if (typeof jQuery === "undefined") { throw new Error("Bootstrap requires jQuery") }
+
 /* ========================================================================
  * Bootstrap: dropdown.js v3.0.2
  * http://getbootstrap.com/javascript/#dropdowns
@@ -826,6 +876,16 @@ if (typeof jQuery === "undefined") { throw new Error("Bootstrap requires jQuery"
     .on('keydown.bs.dropdown.data-api', toggle + ', [role=menu]' , Dropdown.prototype.keydown)
 
 }(jQuery);
+
+/*!
+ * Bootstrap v3.0.2 by @fat and @mdo
+ * Copyright 2014 Twitter, Inc.
+ * Licensed under http://www.apache.org/licenses/LICENSE-2.0 
+ *
+ * Designed and built with all the love in the world by @mdo and @fat.
+ */
+
+if (typeof jQuery === "undefined") { throw new Error("Bootstrap requires jQuery") }
 
 /* ========================================================================
  * Bootstrap: modal.js v3.0.2
@@ -1073,6 +1133,16 @@ if (typeof jQuery === "undefined") { throw new Error("Bootstrap requires jQuery"
     .on('hidden.bs.modal', '.modal', function () { $(document.body).removeClass('modal-open') })
 
 }(jQuery);
+
+/*!
+ * Bootstrap v3.0.2 by @fat and @mdo
+ * Copyright 2014 Twitter, Inc.
+ * Licensed under http://www.apache.org/licenses/LICENSE-2.0 
+ *
+ * Designed and built with all the love in the world by @mdo and @fat.
+ */
+
+if (typeof jQuery === "undefined") { throw new Error("Bootstrap requires jQuery") }
 
 /* ========================================================================
  * Bootstrap: tooltip.js v3.0.2
@@ -1461,6 +1531,16 @@ if (typeof jQuery === "undefined") { throw new Error("Bootstrap requires jQuery"
 
 }(jQuery);
 
+/*!
+ * Bootstrap v3.0.2 by @fat and @mdo
+ * Copyright 2014 Twitter, Inc.
+ * Licensed under http://www.apache.org/licenses/LICENSE-2.0 
+ *
+ * Designed and built with all the love in the world by @mdo and @fat.
+ */
+
+if (typeof jQuery === "undefined") { throw new Error("Bootstrap requires jQuery") }
+
 /* ========================================================================
  * Bootstrap: popover.js v3.0.2
  * http://getbootstrap.com/javascript/#popovers
@@ -1578,6 +1658,16 @@ if (typeof jQuery === "undefined") { throw new Error("Bootstrap requires jQuery"
   }
 
 }(jQuery);
+
+/*!
+ * Bootstrap v3.0.2 by @fat and @mdo
+ * Copyright 2014 Twitter, Inc.
+ * Licensed under http://www.apache.org/licenses/LICENSE-2.0 
+ *
+ * Designed and built with all the love in the world by @mdo and @fat.
+ */
+
+if (typeof jQuery === "undefined") { throw new Error("Bootstrap requires jQuery") }
 
 /* ========================================================================
  * Bootstrap: scrollspy.js v3.0.2
@@ -1738,6 +1828,16 @@ if (typeof jQuery === "undefined") { throw new Error("Bootstrap requires jQuery"
 
 }(jQuery);
 
+/*!
+ * Bootstrap v3.0.2 by @fat and @mdo
+ * Copyright 2014 Twitter, Inc.
+ * Licensed under http://www.apache.org/licenses/LICENSE-2.0 
+ *
+ * Designed and built with all the love in the world by @mdo and @fat.
+ */
+
+if (typeof jQuery === "undefined") { throw new Error("Bootstrap requires jQuery") }
+
 /* ========================================================================
  * Bootstrap: tab.js v3.0.2
  * http://getbootstrap.com/javascript/#tabs
@@ -1873,6 +1973,16 @@ if (typeof jQuery === "undefined") { throw new Error("Bootstrap requires jQuery"
   })
 
 }(jQuery);
+
+/*!
+ * Bootstrap v3.0.2 by @fat and @mdo
+ * Copyright 2014 Twitter, Inc.
+ * Licensed under http://www.apache.org/licenses/LICENSE-2.0 
+ *
+ * Designed and built with all the love in the world by @mdo and @fat.
+ */
+
+if (typeof jQuery === "undefined") { throw new Error("Bootstrap requires jQuery") }
 
 /* ========================================================================
  * Bootstrap: affix.js v3.0.2

@@ -50,6 +50,7 @@ module.exports = AppView.extend({
 
         this.views.crumbs.value(arr)    
     },
+
     loadMain: function(artist, album){
         var region = this.regions.main
           , view   = album ? 'mediaList' : artist ? 'albums' : 'artists'

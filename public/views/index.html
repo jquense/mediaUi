@@ -8,30 +8,32 @@
     <script src="/js/plugins/jquery-hammer.js" type="text/javascript"></script>
 
     <link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <link href="/css/site.css" rel="stylesheet" />
 
     <title>Title of the document</title>
 </head>
 
-    <body class="container">
-        <ul class="nav nav-tabs">
-          <li class="active"><a href="#LibaryTab" data-toggle="tab">Libary</a></li>
-          <li><a href="#">Profile</a></li>
-          <li><a href="#">Messages</a></li>
-        </ul>
-        <div id="NowPlayingPanel" class="row"></div>
-        <div class="tab-content">
-            <div id="LibaryTab" class="tab-pane active row">
-                <div class="side-panel col-sm-3 hide"></div>
-                <div class="main-panel col-sm-12">
-                    <ol class="breadcrumb">
-                    </ol>
-                    <div class="main-content">
-                        <ul class="media-list list-unstyled"></ul>
+    <body>
+        <div class="container">
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#LibaryTab" data-toggle="tab">Libary</a></li>
+              <li><a href="#">Profile</a></li>
+              <li><a href="#">Messages</a></li>
+            </ul>
+            <div class="tab-content">
+                <div id="LibaryTab" class="tab-pane active row">
+                    <div class="side-panel col-sm-3 hide"></div>
+                    <div class="main-panel col-sm-12">
+                        <ol class="breadcrumb">
+                        </ol>
+                        <div class="main-content">
+                            <ul class="media-list list-unstyled"></ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        
+        <div id="NowPlayingPanel" class="container media"></div>
     </body>
 </html>

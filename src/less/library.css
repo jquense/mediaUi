@@ -1,3 +1,9 @@
+#NowPlayingPanel {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
 #NowPlayingPanel .sliders {
   position: relative;
   height: 15px;

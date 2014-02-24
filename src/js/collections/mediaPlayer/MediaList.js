@@ -5,7 +5,7 @@ var Collection =  require('backbone').Collection
 
 module.exports = Collection.extend({
 
-    model: require('../../models/mediaPlayer/PlaylistItem'),
+    model: require('../../models/Media'),
     url:   '/media',
 
     initialize: function(models, options) {

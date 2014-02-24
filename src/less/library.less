@@ -1,19 +1,29 @@
 ﻿
-#NowPlayingPanel .sliders {
-    position: relative;
-    height: 15px;
+#NowPlayingPanel {
+    background-color: @gray-lighter;
+    border: 1px solid @navbar-default-border;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
 
-    .m-slider {
-        height: 100%;
-        width: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
+    .sliders {
+        position: relative;
+        height: 15px;
 
-    .media-buffer {
-        .m-slider-range {
-            background-color: #ccc;
+        .m-slider {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .media-buffer {
+            background-color: white;
+            .m-slider-range {
+                background-color: @gray-lighter;
+            }
         }
     }
 }

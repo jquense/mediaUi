@@ -2,6 +2,19 @@
   , _ = require('lodash');
 
 module.exports = function(){
+
+    Handlebars.registerHelper('partl', function(partial, context, options) {
+        if (!partial) console.error('No partial name given.')
+
+        partial = Handlebars.partials[partial];
+
+        if (!partial) return ''
+
+        context = _.extend({}, context, options.hash);
+
+        return new Handlebars.SafeString( partial(context) );
+    });
+
     Handlebars.registerHelper('take', function(context, cnt, from, options) {
         if ( !options ) {
             options = from;
@@ -26,22 +39,26 @@ module.exports = function(){
     Handlebars.registerHelper("rows", function(context, cnt, options) {
         var i = 0, len = context.length
           , row = []
-          , out= '', attrs = '', data;
+          , out= '', attrs = '', data
         
-        options.hash.class = options.hash.class + ' row';
 
-        attr = _.map(options.hash, function(v, k){  return k + "=\"" + v + "\"" });
+        options.hash.class = (options.hash.class || '') + ' row'
+
+        attr = _.map(options.hash, function(v, k){  return k + "=\"" + v + "\"" })
 
         for(; i < len; i++) {
             row.push(context[i]);
 
-            if ( (i + 1) % cnt === 0 || i >= len ){
+            if ( (i + 1) % cnt === 0 ){
                 out += "<div " + attr + ">" + options.fn({ items: row }) + "</div>"
                 row = [];
             }
         }
 
-        return out;
+        if ( rows.legth ) 
+            out += "<div " + attr + ">" + options.fn({ items: row }) + "</div>"
+
+        return out
     });
 
     var ops = {
