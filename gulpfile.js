@@ -33,7 +33,7 @@ gulp.task('browserify', function() {
             transform: ['hbsfy']
         }))
         .pipe(rename('app.js'))
-        .pipe(gulp.dest('/public/js'));
+        .pipe(gulp.dest('public/js'));
 });
 
 // Watch Files For Changes
@@ -45,7 +45,9 @@ gulp.task('watch', function() {
         .pipe(jshint.reporter('jshint-stylish'));
 
     gulp.watch('src/less/*.less', ['less']);
+    gulp.watch('src/**/*.{js,hbs}', ['browserify'])
 });
+
 
 gulp.task('bootstrap', bootstrap);
 

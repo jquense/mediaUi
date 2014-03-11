@@ -1,4 +1,5 @@
-﻿var Handlebars = require("hbsfy/runtime")
+'use strict';
+var Handlebars = require('hbsfy/runtime')
   , _ = require('lodash');
 
 module.exports = function(){
@@ -22,7 +23,7 @@ module.exports = function(){
         }
 
         var fn = options.fn
-          , ret = "";
+          , ret = '';
 
         if ( typeof context === 'function')
             context = context.call(this);
@@ -36,27 +37,26 @@ module.exports = function(){
         return ret;
     });
 
-    Handlebars.registerHelper("rows", function(context, cnt, options) {
+    Handlebars.registerHelper('rows', function(context, cnt, options) {
         var i = 0, len = context.length
           , row = []
-          , out= '', attrs = '', data
-        
+          , out= '' , attrs;
 
         options.hash.class = (options.hash.class || '') + ' row'
 
-        attr = _.map(options.hash, function(v, k){  return k + "=\"" + v + "\"" })
+        attrs = _.map(options.hash, function(v, k){  return k + '=\'' + v + '\'' })
 
         for(; i < len; i++) {
             row.push(context[i]);
 
             if ( (i + 1) % cnt === 0 ){
-                out += "<div " + attr + ">" + options.fn({ items: row }) + "</div>"
+                out += '<div ' + attrs + '>' + options.fn({ items: row }) + '</div>'
                 row = [];
             }
         }
 
-        if ( rows.legth ) 
-            out += "<div " + attr + ">" + options.fn({ items: row }) + "</div>"
+        if ( row.length )
+            out += '<div ' + attrs + '>' + options.fn({ items: row }) + '</div>'
 
         return out
     });
